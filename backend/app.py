@@ -1,6 +1,7 @@
 import os
 import logging
 from flask import Flask
+from flask_cors import CORS
 from routes.opportunities.opportunities import opportunities_bp
 from routes.grants.grants import grants_bp 
 
@@ -23,6 +24,7 @@ def setup_logging(app):
 
 
 app = Flask(__name__)
+CORS(app)
 setup_logging(app)
 
 

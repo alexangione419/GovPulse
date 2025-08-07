@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# a service to interact with the SAM.gov API
+# a service to interact with the grants.gov API
 class GrantsService:
     GRANTS_BASE_URL = "https://api.grants.gov/v1/api/search2"
 
