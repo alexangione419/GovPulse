@@ -1,6 +1,9 @@
 .grant {
-  background-color: #389652;
+background-color: #E6E7DA;
+  border-style: solid;
   border-radius: 12px;        
+  border-color: #389652;
+  border-width: 10px;;
   padding: 16px;              
   margin: 16px 10px;             
   font-family: sans-serif;
@@ -13,7 +16,7 @@
 
 .grant h3 {
   margin-top: 0;
-  color: #ffffff; 
+  color: #242424; 
 }
 
 .grant p {
