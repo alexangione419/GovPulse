@@ -4,7 +4,7 @@ from flask import Flask
 from flask_cors import CORS
 from routes.opportunities.opportunities import opportunities_bp
 from routes.grants.grants import grants_bp 
-
+from routes.contracts.contracts import contracts_bp
 
 def setup_logging(app):
     if not os.path.exists('logs'):
@@ -31,6 +31,7 @@ setup_logging(app)
 
 app.register_blueprint(opportunities_bp, url_prefix='/opportunities')
 app.register_blueprint(grants_bp, url_prefix='/grants')
+app.register_blueprint(contracts_bp, url_prefix='/contracts')
 
 if __name__ == "__main__":
     app.run(debug=True)

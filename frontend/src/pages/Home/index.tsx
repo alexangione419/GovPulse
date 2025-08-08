@@ -3,20 +3,22 @@ import "./styles.css"
 import { getOpportunities } from '../../api/opportunities';
 import { getGrants } from '../../api/grants';
 import Grant from '../../components/Grant';
+import Opportunity from '../../components/Opportunity'
 
 const Home: React.FC = () => {
   const [opps, setOpps] = useState<Opportunity[]>([])
 
+
   const [grants, setGrants] = useState<Grant[]>([])
   const [grantPage, setGrantPage] = useState(0)
+  const [hasMoreGrants, sethasMoreGrants] = useState(true)
 
   const [loading, setLoading] = useState(false)
-  const [hasMore, sethasMore] = useState(true)
 
 
 
   const loadGrants = useCallback(async () => {
-    if (loading || !hasMore) return;
+    if (loading || !hasMoreGrants) return;
     setLoading(true);
 
     try {
@@ -26,7 +28,7 @@ const Home: React.FC = () => {
       setGrantPage(grantPage+1);
 
       if (newGrants.length = 0) {
-        sethasMore(false)
+        sethasMoreGrants(false)
       }
     } catch (err) {
       console.log(`ERROR - Grant loading ${err}`)
@@ -34,10 +36,27 @@ const Home: React.FC = () => {
       setLoading(false)
     }
 
-  }, [grantPage, loading, hasMore])
+  }, [grantPage, loading, hasMoreGrants])
+
+
+  const loadOpportunities = useCallback(async () => {
+    setLoading(true);
+
+    try {
+      const newOpps = await getOpportunities();
+      setOpps(opps.concat(newOpps));
+
+
+    } catch (err) {
+      console.log(`ERROR - Opportunity loading ${err}`)
+    } finally {
+      setLoading(false)
+    }
+  }, [opps, loading])
 
 
   useEffect(() => {
+    // loadOpportunities();
     loadGrants();
   }, []);
 
@@ -60,7 +79,15 @@ const Home: React.FC = () => {
   return (
     <>
       
-      {opps.length > 0 && <h2>Opps - {opps[0].title}</h2>}
+      {opps.length > 0 && (
+        <div>
+          {opps.map((opp) => (
+            <Opportunity key={opp.noticeId} opportunity={opp} />
+            
+          ))}
+        </div>
+      )}
+
       {grants.length > 0 && (
         <div>
           {grants.map((grant) => (
@@ -70,7 +97,7 @@ const Home: React.FC = () => {
       )}
 
       {loading && <p>Loading more...</p>}
-      {!hasMore && <p>No more grants found. Try a different filter!</p>}
+      {!hasMoreGrants && <p>No more grants found. Try a different filter!</p>}
 
     </>
   )
