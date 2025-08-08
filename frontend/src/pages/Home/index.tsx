@@ -24,7 +24,7 @@ const Home: React.FC = () => {
       console.log(newGrants)
       setGrants(grants.concat(newGrants));
       setGrantPage(grantPage+1);
-      
+
       if (newGrants.length = 0) {
         sethasMore(false)
       }
@@ -35,7 +35,6 @@ const Home: React.FC = () => {
     }
 
   }, [grantPage, loading, hasMore])
-
 
 
   useEffect(() => {
