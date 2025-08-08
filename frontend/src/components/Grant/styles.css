@@ -1,0 +1,22 @@
+.grant {
+  background-color: #389652;
+  border-radius: 12px;        
+  padding: 16px;              
+  margin: 12px 0;             
+  font-family: sans-serif;
+  transition: transform 0.1s ease-in-out;
+}
+
+.grant:hover {
+  transform: translateY(-2px); 
+}
+
+.grant h3 {
+  margin-top: 0;
+  color: #ffffff; 
+}
+
+.grant p {
+  margin: 4px 0;
+  color: #1f1f1f;
+}

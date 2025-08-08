@@ -10,8 +10,6 @@ def get_opportunities():
 
     try:
         grants = grants_service.get_grants(size=10)
-        current_app.logger.info(grants["data"]["oppHits"])
-
         return jsonify(grants["data"]["oppHits"]), 200
     except Exception as e:
         current_app.logger.error(f"ERROR - get_opportunities route : {e}")

@@ -1,6 +1,7 @@
 import os
 import requests
 from dotenv import load_dotenv
+from flask import current_app
 
 load_dotenv()
 
@@ -27,6 +28,6 @@ class SAMService:
             response.raise_for_status()
             return response.json()   
         except requests.RequestException as e:
-            print(f"ERROR - Sam Service : get_opportunities {e}")
+            current_app.logger.error(f"ERROR - Sam Service : get_opportunities {e}")
             return None     
 

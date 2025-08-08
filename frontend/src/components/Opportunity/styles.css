@@ -1,0 +1,22 @@
+.opportunity {
+  background-color: #7b4ece;
+  border-radius: 12px;        
+  padding: 16px;              
+  margin: 12px 0;             
+  font-family: sans-serif;
+  transition: transform 0.1s ease-in-out;
+}
+
+.opportunity:hover {
+  transform: translateY(-2px); 
+}
+
+.opportunity h3 {
+  margin-top: 0;
+  color: #ffffff; 
+}
+
+.opportunity p {
+  margin: 4px 0;
+  color: #1f1f1f;
+}

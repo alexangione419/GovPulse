@@ -10,8 +10,6 @@ def get_opportunities():
 
     try:
         opportunities = sam_service.get_opportunities(size=1)
-        print(opportunities)
-
         return jsonify(opportunities["opportunitiesData"]), 200
     except Exception as e:
         current_app.logger.error(f"ERROR - get_opportunities route : {e}")

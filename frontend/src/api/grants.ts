@@ -1,11 +1,5 @@
 const base_url = import.meta.env.VITE_BACKEND_URL as string;
 
-interface Grant {
-    agency: string;
-    id: string;
-    title: string; 
-    closeDate: string;
-}
 
 async function getGrants(): Promise<Grant[]> {
     const api_url = `${base_url}/grants/`;
@@ -31,4 +25,4 @@ async function getGrants(): Promise<Grant[]> {
     return data;
 }
 
-export { getGrants, type Grant }
+export { getGrants }

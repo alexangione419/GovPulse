@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import "./styles.css"
 import { getOpportunities } from '../../api/opportunities';
-import type { Opportunity } from '../../api/opportunities';
 import { getGrants } from '../../api/grants';
-import type { Grant } from '../../api/grants';
+import Grant from '../../components/Grant';
 
 const Home: React.FC = () => {
   const [opps, setOpps] = useState<Opportunity[]>([])
@@ -33,10 +32,16 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <div>Pryzm Twitter Feed</div>
+      <h1>GovPulse</h1>
       
       {opps.length > 0 && <h2>Opps - {opps[0].title}</h2>}
-      {grants.length > 0 && <h2>Opps - {grants[0].title}</h2>}
+      {grants.length > 0 && (
+        <div>
+          {grants.map((grant) => (
+            <Grant key={grant.id} grant={grant} />
+          ))}
+        </div>
+      )}
 
     </>
   )
