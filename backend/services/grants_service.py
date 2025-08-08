@@ -1,7 +1,7 @@
 import os
 import requests
 from dotenv import load_dotenv
-from flask import current_app
+from flask import current_app, jsonify
 
 load_dotenv()
 
@@ -9,13 +9,14 @@ load_dotenv()
 class GrantsService:
     GRANTS_BASE_URL = "https://api.grants.gov/v1/api/search2"
 
-    def get_grants(self, size = 10):
+
+    def get_grants(self, page, keyword="", agencies="DOD*"):
         body = { 
-            "rows": size,
-            "keyword": "",
+            "rows": 999,
+            "keyword": keyword,
             "oppNum": "",
             "eligibilities": "",
-            "agencies": "DOD*",
+            "agencies": agencies,
             "oppStatuses": "forecasted|posted",
             "aln": "",
             "fundingCategories": ""
@@ -24,7 +25,13 @@ class GrantsService:
         try:
             response = requests.post(self.GRANTS_BASE_URL, json = body)
             response.raise_for_status()
-            return response.json()   
+            data = response.json()["data"]["oppHits"]
+
+            page_size = 10
+            paginated_data = data[(page*page_size): page*page_size+page_size]
+            return paginated_data
+
+
         except requests.RequestException as e:
             current_app.logger.error(f"ERROR - Sam Service : get_opportunities {e}")
             return None  

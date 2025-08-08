@@ -4,7 +4,13 @@ const LeftNav: React.FC = () => {
   return (
     <>
       <div className="SidePanel">
-        <div className="LeftNav__logo">Pryzm</div>
+        <h1>GovPulse</h1>
+        
+        <h2>Opportunities</h2>
+
+
+        <h2>Grants</h2>
+
       </div>
     </> 
   );

@@ -1,10 +1,5 @@
 const base_url = import.meta.env.VITE_BACKEND_URL as string;
 
-interface Opportunity {
-  noticeId: string;
-  title: string;
-}
-
 async function getOpportunities(): Promise<Opportunity[]> {
     const api_url = `${base_url}/opportunities/`;
 
@@ -28,4 +23,4 @@ async function getOpportunities(): Promise<Opportunity[]> {
     return data;
 }
 
-export { getOpportunities, type Opportunity }
+export { getOpportunities }

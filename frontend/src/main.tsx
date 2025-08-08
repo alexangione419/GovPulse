@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { SidePanel, Home } from './pages'
+import { Home } from './pages'
 
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import Layout from './pages/Layout'

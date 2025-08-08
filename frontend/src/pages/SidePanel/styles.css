@@ -1,23 +1,10 @@
-.Layout {
-  display: flex;
-  flex-direction: row;
-  width: 100vw;
-  height: 100vh;
-}
-
 .SidePanel {
   position: fixed;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 250px;
   height: 100vh;
   background-color: antiquewhite;
-  color: #242424
-}
-
-.MainPanel {
-  flex-grow: 1;
-  margin-left: 250px;
-  padding: 30px;
-  background-color: #242424;
+  color: #242424;
+  padding: 20px;
 }
