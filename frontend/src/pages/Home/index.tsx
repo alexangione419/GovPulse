@@ -77,8 +77,7 @@ const Home: React.FC = () => {
   }, [loadGrants]); 
 
   return (
-    <>
-      
+    <div className='Home'>
       {opps.length > 0 && (
         <div>
           {opps.map((opp) => (
@@ -99,7 +98,7 @@ const Home: React.FC = () => {
       {loading && <p>Loading more...</p>}
       {!hasMoreGrants && <p>No more grants found. Try a different filter!</p>}
 
-    </>
+    </div>
   )
 }
 
