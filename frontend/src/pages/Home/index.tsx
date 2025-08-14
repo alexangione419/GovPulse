@@ -4,8 +4,12 @@ import { getOpportunities } from '../../api/opportunities';
 import { getGrants } from '../../api/grants';
 import Grant from '../../components/Grant';
 import Opportunity from '../../components/Opportunity'
+import type { LayoutContext } from '../Layout';
+import { useOutletContext } from 'react-router-dom';
 
 const Home: React.FC = () => {
+  const {filters, applyFilter} = useOutletContext<LayoutContext>();
+
   const [opps, setOpps] = useState<Opportunity[]>([])
 
 
@@ -17,21 +21,24 @@ const Home: React.FC = () => {
 
 
 
-  const loadGrants = useCallback(async () => {
+  const loadSources = useCallback(async () => {
     if (loading || !hasMoreGrants) return;
     setLoading(true);
 
     try {
-      const newGrants = await getGrants(grantPage);
-      console.log(newGrants)
+      const newGrants = await getGrants(grantPage, filters.grants);
       setGrants(grants.concat(newGrants));
       setGrantPage(grantPage+1);
 
       if (newGrants.length = 0) {
         sethasMoreGrants(false)
       }
+
+      // const newOpps = await getOpportunities(filters.opportunities);
+      // setOpps(opps.concat(newOpps));
+
     } catch (err) {
-      console.log(`ERROR - Grant loading ${err}`)
+      console.log(`ERROR - loading ${err}`)
     } finally {
       setLoading(false)
     }
@@ -39,26 +46,23 @@ const Home: React.FC = () => {
   }, [grantPage, loading, hasMoreGrants])
 
 
-  const loadOpportunities = useCallback(async () => {
-    setLoading(true);
-
-    try {
-      const newOpps = await getOpportunities();
-      setOpps(opps.concat(newOpps));
-
-
-    } catch (err) {
-      console.log(`ERROR - Opportunity loading ${err}`)
-    } finally {
-      setLoading(false)
-    }
-  }, [opps, loading])
+  
 
 
   useEffect(() => {
-    // loadOpportunities();
-    loadGrants();
-  }, []);
+    loadSources();
+  }, []); 
+  
+  useEffect(() => {
+    setGrants([]);
+    setGrantPage(0);
+    sethasMoreGrants(true);
+    setOpps([]);
+    
+
+    
+    loadSources();
+  }, [applyFilter]);
 
   // scroll handler
   useEffect(() => {
@@ -68,13 +72,13 @@ const Home: React.FC = () => {
       const scrollHeight = document.documentElement.scrollHeight;
 
       if (scrollY + innerHeight >= scrollHeight - 200) {
-        loadGrants();
+        loadSources();
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loadGrants]); 
+  }, [loadSources]); 
 
   return (
     <div className='Home'>

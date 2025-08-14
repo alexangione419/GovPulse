@@ -8,3 +8,62 @@
   color: #E6E7DA;
   padding: 20px;
 }
+
+
+.filterCardOpportunities {
+  background-color: #e5c9f896;
+  border-radius: 6px;             
+  padding: 12px 14px;
+}
+
+.filterCardGrants  {
+  background: #c9f8d796;           
+  border-radius: 6px;             
+  padding: 12px 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.filterCardContracts {
+  background: #f8f6c996;           
+  border-radius: 6px;             
+  padding: 12px 14px;
+}
+
+.filterCard + .filterCard {
+  margin-top: 12px;
+}
+
+
+.SidePanel h1 {
+  margin: 0 0 24px;               
+}
+
+.SidePanel h2 {
+  margin: 0 0 9px;                
+  color: #1f1f1f;
+}
+
+.SidePanel p {
+  margin: 0;                      
+  line-height: 1.25;
+  color: #1f1f1f;
+}
+
+.SidePanel p + p {
+  margin-top: 2px;                 
+}
+
+
+.filterInput {
+  height: 20px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 0px;
+  background-color: #3b3b3b;
+  margin: 0 0 5px;
+}
+
+.applyBtn {
+  margin: 10px 0;
+}

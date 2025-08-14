@@ -10,13 +10,14 @@ class GrantsService:
     GRANTS_BASE_URL = "https://api.grants.gov/v1/api/search2"
 
 
-    def get_grants(self, page, keyword="", agencies="DOD*"):
+    def get_grants(self, page, filters):
+        current_app.logger.info(f"DEBUG - GET_GRANTS SERVICE with filters: {filters}")
         body = { 
             "rows": 999,
-            "keyword": keyword,
+            "keyword": "",
             "oppNum": "",
             "eligibilities": "",
-            "agencies": agencies,
+            "agencies": filters.get("agency", ""),
             "oppStatuses": "forecasted|posted",
             "aln": "",
             "fundingCategories": ""

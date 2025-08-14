@@ -5,13 +5,14 @@ import requests
 grants_bp = Blueprint('grants', __name__) 
 grants_service = GrantsService()
 
-@grants_bp.route('', methods=['GET'])
+@grants_bp.route('', methods=['POST'])
 def get_grants():
     current_app.logger.info("DEBUG - GET_GRANTS ROUTE")
     page = int(request.args.get("page", 1))
 
     try:
-        grants = grants_service.get_grants(page=page)
+        filters = request.get_json() 
+        grants = grants_service.get_grants(page=page, filters=filters)
         current_app.logger.info(grants)
 
         return jsonify(grants), 200
