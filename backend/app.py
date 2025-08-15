@@ -6,6 +6,7 @@ from routes.opportunities.opportunities import opportunities_bp
 from routes.grants.grants import grants_bp 
 from routes.contracts.contracts import contracts_bp
 
+# logging setup for debugging/backend errors
 def setup_logging(app):
     if not os.path.exists('logs'):
         os.mkdir('logs')
@@ -28,7 +29,7 @@ CORS(app)
 setup_logging(app)
 
 
-
+# register blueprints for routes
 app.register_blueprint(opportunities_bp, url_prefix='/opportunities')
 app.register_blueprint(grants_bp, url_prefix='/grants')
 app.register_blueprint(contracts_bp, url_prefix='/contracts')

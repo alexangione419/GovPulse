@@ -31,6 +31,7 @@ const Home: React.FC = () => {
     loadSources();
   }, []); 
 
+  // function to shuffle the feed
   function shuffleArray(array: any[]) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -38,6 +39,7 @@ const Home: React.FC = () => {
     }
   }
 
+  // calls the backend for our 3 data types and combines them into a single feed
   const loadSources = useCallback(async () => {
     if (loadingRef.current || loading) return;
     if (!hasMoreGrants) return;
@@ -74,7 +76,7 @@ const Home: React.FC = () => {
 
 
 
-  
+  // to be executed when the apply filter button is clicked, resets the page with the new filters active
   useEffect(() => {
     // Reset state
     setFeed([]);
@@ -88,7 +90,7 @@ const Home: React.FC = () => {
   }, [applyFilter]);
 
 
-
+  // infinite scroll functionality
   useEffect(() => {
     const handleScroll = () => {
         const scrollY = window.scrollY;
