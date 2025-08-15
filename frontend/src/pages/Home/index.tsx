@@ -13,16 +13,18 @@ const Home: React.FC = () => {
   const {filters, applyFilter} = useOutletContext<LayoutContext>();
 
   const [feed, setFeed] = useState<any[]>([])
+  const [oppPage, setOppPage] = useState(0)
+  const [hasMoreOpps, sethasMoreOpps] = useState(true)
+
   const [grantPage, setGrantPage] = useState(0)
   const [hasMoreGrants, sethasMoreGrants] = useState(true)
+
   const [contractPage, setContractPage] = useState(1)
   const [hasMoreContracts, sethasMoreContracts] = useState(true)
+
   const [loading, setLoading] = useState(false)
 
-  // Single loading ref to prevent concurrent calls
   const loadingRef = useRef(false);
-
-
 
   
   useEffect(() => {
@@ -37,7 +39,6 @@ const Home: React.FC = () => {
   }
 
   const loadSources = useCallback(async () => {
-    // Prevent concurrent calls
     if (loadingRef.current || loading) return;
     if (!hasMoreGrants) return;
 
@@ -47,21 +48,21 @@ const Home: React.FC = () => {
     console.log("Loading sources...");
 
     try {
-      // Use current state values directly instead of refs
       const newGrants = await getGrants(grantPage, filters.grants);
       const newContracts = await getContracts(contractPage, filters.contracts);
+      const newOpps = await getOpportunities(oppPage, filters.opportunities);
 
       const combinedFeed = [
+        ...newOpps.map(o => ({ type: "opp" as const, data: o })),
         ...newContracts.map(c => ({ type: "contract" as const, data: c })),
         ...newGrants.map(g => ({ type: "grant" as const, data: g })),
       ];
 
       shuffleArray(combinedFeed);
       
-      // Update state
-      setFeed(prev => prev.concat(combinedFeed));
-      setGrantPage(prev => prev + 1);
-      setContractPage(prev => prev + 1);
+      setFeed(feed => feed.concat(combinedFeed));
+      setGrantPage(page => page + 1);
+      setContractPage(page => page + 1);
 
     } catch (err) {
       console.log(`ERROR - loading ${err}`)
@@ -106,7 +107,7 @@ const Home: React.FC = () => {
   }, [loadSources]);
 
 
-  
+
   return (
     <div className='Home'>
       {feed.map((item) => {

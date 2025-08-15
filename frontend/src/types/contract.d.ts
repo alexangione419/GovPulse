@@ -9,7 +9,6 @@ interface Contract {
 }
 
 type ContractFilters = {
-  endDate: string;
   awardMaxAmount: string;
   awardMinAmount: string;
 }

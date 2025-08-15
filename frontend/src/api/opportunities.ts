@@ -1,23 +1,29 @@
 const base_url = import.meta.env.VITE_BACKEND_URL as string;
 
-async function getOpportunities(): Promise<Opportunity[]> {
-    const api_url = `${base_url}/opportunities/`;
+async function getOpportunities(page: number, oppFilters: OpportunityFilters): Promise<Opportunity[]> {
+    const api_url = `${base_url}/opportunities?page=${page}`;
 
     const response = await fetch (
         api_url,
         {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-            }
+            },
+            body: JSON.stringify(oppFilters),
         }
     );
 
     if (!response.ok) {
-        throw new Error(`API ERROR - status: ${response.status}`);
+        if (response.status === 429) {
+            console.log("Rate limit exceeded. Please try again later.");
+            return []
+        } else {
+            throw new Error(`API ERROR - status: ${response.status}`);
+        }
+
     }
 
-    console.log("ok well were getting here")
     const data: Opportunity[] = await response.json();
     console.log(data)
     return data;

@@ -66,7 +66,7 @@ const SidePanel: React.FC<FilterProps> = ({ filters, onChange, onApply }) => {
                   type="text"
                   value={filters.opportunities.status}
                   onChange={(e) => setOpp({ status: e.target.value })}
-                  placeholder="ACTIVE, INACTIVE, ARCHIVED, CANCELLED, DELETED"
+                  placeholder="Activelatest, Activeall, Archived, Cancelled, Deleted"
                 />
               </label>
               </>
@@ -113,16 +113,6 @@ const SidePanel: React.FC<FilterProps> = ({ filters, onChange, onApply }) => {
 
             return (
               <>
-              <label >
-                <p> End Date</p>
-                <input
-                  className="filterInput"
-                  type="text"
-                  value={filters.contracts.endDate}
-                  onChange={(e) => setOpp({ endDate: e.target.value })}
-                  placeholder="yyyy-mm-dd"
-                />
-              </label>
               
                <label >
                 <p> Award Min Amount</p>

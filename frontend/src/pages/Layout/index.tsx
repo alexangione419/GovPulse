@@ -35,7 +35,6 @@ const Layout: React.FC = () => {
       status: ""
     },
     contracts: {
-      endDate: "2025-08-01",
       awardMaxAmount: "400000",
       awardMinAmount:"0"
     }
@@ -44,7 +43,7 @@ const Layout: React.FC = () => {
 
   return (
     <div className="Layout">
-        <SidePanel filters={filters} onChange={setFilters} onApply={() => setApplyFilter(applyFilter+1)}/>
+        <SidePanel filters={filters} onChange={setFilters} onApply={() => setApplyFilter(prev => prev+1)}/>
       
       <div className="MainPanel">
         <Outlet context={{filters, setFilters, applyFilter}}/> 
