@@ -7,12 +7,7 @@ import { useState } from "react";
 
 
 
-type ContractFilters = {
-  startDate: string;
-  endDate: string;
-  awardMaxAmount: string;
-  awardMinAmount: string;
-}
+
 
 export type Filters = {
   grants: GrantFilters;
@@ -40,10 +35,9 @@ const Layout: React.FC = () => {
       status: ""
     },
     contracts: {
-      startDate: "2025-07-01",
       endDate: "2025-08-01",
       awardMaxAmount: "400000",
-      awardMinAmount: "0"
+      awardMinAmount:"0"
     }
   });
   const [applyFilter, setApplyFilter] = useState(0);

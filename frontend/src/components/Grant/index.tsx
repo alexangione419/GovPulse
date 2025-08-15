@@ -18,7 +18,6 @@ const Grant: React.FC<GrantProps> = (
             <p> Close Date: {grant.closeDate == "" ? "N/A" : grant.closeDate}</p>
         </div>
     );
-
 };
 
 

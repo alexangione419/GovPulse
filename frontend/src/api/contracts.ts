@@ -1,8 +1,8 @@
 const base_url = import.meta.env.VITE_BACKEND_URL as string;
 
 
-async function getGrants(page: number, grantfilters: GrantFilters): Promise<Grant[]> {
-    const api_url = `${base_url}/grants?page=${page}`;
+async function getContracts(page: number, contractFilters: ContractFilters): Promise<Contract[]> {
+    const api_url = `${base_url}/contracts?page=${page}`;
 
     const response = await fetch (
         api_url,
@@ -11,7 +11,7 @@ async function getGrants(page: number, grantfilters: GrantFilters): Promise<Gran
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(grantfilters),
+            body: JSON.stringify(contractFilters),
         }
     );
 
@@ -19,10 +19,8 @@ async function getGrants(page: number, grantfilters: GrantFilters): Promise<Gran
         throw new Error(`API ERROR - status: ${response.status}`);
     }
 
-    
-    const data = await response.json();
-    const grants:Grant[] = data["grants"] as Grant[];
-    return grants;
+    const data: Contract[] = await response.json() as Contract[];
+    return data;
 }
 
-export { getGrants }
+export { getContracts }

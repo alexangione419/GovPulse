@@ -30,6 +30,7 @@ class GrantsService:
 
             page_size = 10
             paginated_data = data[(page*page_size): page*page_size+page_size]
+
             return paginated_data
 
 

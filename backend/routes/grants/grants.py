@@ -13,9 +13,8 @@ def get_grants():
     try:
         filters = request.get_json() 
         grants = grants_service.get_grants(page=page, filters=filters)
-        current_app.logger.info(grants)
-
-        return jsonify(grants), 200
+        current_app.logger.info(f"DEBUG - Grants Route Response: {grants}") 
+        return jsonify({"grants" : grants}), 200
     except Exception as e:
         current_app.logger.error(f"ERROR - get_grants route : {e}")
         return jsonify({"error": "Failed to fetch grants"}), 500

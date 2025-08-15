@@ -1,0 +1,25 @@
+.contract {
+  background-color: #f8f7c996;
+  border-style: solid;
+  border-radius: 12px;        
+  border-color: #6c6d27;
+  border-width: 10px;;
+  padding: 16px;              
+  margin: 16px 10px;             
+  font-family: sans-serif;
+  transition: transform 0.1s ease-in-out;
+}
+
+.contract:hover {
+  transform: translateY(-2px); 
+}
+
+.contract h3 {
+  margin-top: 0;
+  color: #242424; 
+}
+
+.contract p {
+  margin: 4px 0;
+  color: #1f1f1f;
+}

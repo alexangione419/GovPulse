@@ -6,6 +6,9 @@ interface Grant {
     openDate: string;
     closeDate: string;
     oppStatus: string;
+    cdfaList: string[];
+    docType: string;
+    number: string;
 }
 
 interface GrantFilters {
