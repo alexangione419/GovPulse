@@ -35,7 +35,7 @@ app.register_blueprint(grants_bp, url_prefix='/grants')
 app.register_blueprint(contracts_bp, url_prefix='/contracts')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
 
 
 
